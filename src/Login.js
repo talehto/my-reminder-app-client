@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar, ButtonGroup, Navbar } from 'react-bootstrap';
 import './App.css';
+import { connect } from 'react-redux'
+import * as loginActions from './actions/loginActions';
 
 class Login extends Component {
 
@@ -9,32 +11,36 @@ class Login extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    this.state = {isLoggedIn: false, userName: ""};
+    this.tempUserName = ""
   }
 
   handleChange(event) {
     console.log(event.target.value);
-    this.setState({userName: event.target.value});
+    this.tempUserName = event.target.value;
+    console.log(this.tempUserName)
   }
 
   handleLoginClick() {
-    this.setState({isLoggedIn: true});
+   console.log("handleLoginClick")
+   console.log(this.tempUserName)
+   this.props.setUserName(this.tempUserName)
   }
 
   handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+   console.log("handleLogoutClick")
+    this.props.setUserName("")
+    this.tempUserName = ""
+    console.log(this.tempUserName)
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
-
-    if (isLoggedIn) {
+    console.log(this.props.userName)
+    if (this.props.userName) {
       return (
         <div className="Login">
           <Form inline>
             <Navbar.Text>
-              Signed in as: {this.state.userName}
+              Signed in as: {this.props.userName}
             </Navbar.Text>
             {' '}
             <ButtonGroup>
@@ -74,5 +80,18 @@ class Login extends Component {
     } 
   }
 }
+//
+const mapStateToProps = (state, ownProps) => {
+  return {
+    userName: state.get('userName')
+  }
+};
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUserName: userName => dispatch(loginActions.setUserName(userName))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+

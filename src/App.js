@@ -9,15 +9,19 @@ import Header from './Header'
 import StartMainPage from './StartMainPage'
 
 class App extends Component {
-    render() {
-    return (
-      <div>
-          <Router>
-	        	<Switch>
-	            	<Route path="/" component={Header}/>
-	          	</Switch>
-          </Router>
-      </div>
+    constructor(props) {
+    super(props);
+  }
+
+  render() {
+  return (
+    <div>
+        <Router>
+        	<Switch>
+            	<Route path="/" component={Header}/>
+          	</Switch>
+        </Router>
+    </div>
     );
   }
 }
