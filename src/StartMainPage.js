@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import './App.css';
-import UserNotes from './UserNotes'
+import UserAlarms from './UserAlarms'
 
 class StartMainPage extends Component {
 
@@ -23,8 +23,8 @@ class StartMainPage extends Component {
       );
       }else{
         return (
-          <div className="UserNotes">
-            <UserNotes />             
+          <div className="UserAlarms">
+            <UserAlarms />             
           </div>
           );
       }
