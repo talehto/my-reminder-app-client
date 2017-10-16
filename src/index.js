@@ -11,7 +11,8 @@ import registerServiceWorker from './registerServiceWorker';
 import * as loginActions from './actions/loginActions';
 
 const store = createStore(reducer)
-store.dispatch(loginActions.setUserName(""))
+//store.dispatch(loginActions.setUserName(""))
+//store.dispatch(loginActions.setShowCreateNewAlarmDialog(false))
 const render = () => ReactDOM.render(
 	<Provider store={store}>
 		<App />
