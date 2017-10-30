@@ -3,6 +3,7 @@ import { Jumbotron, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import './App.css';
 import UserAlarms from './UserAlarms'
+import Header from './Header'
 
 class StartMainPage extends Component {
 
@@ -13,17 +14,19 @@ class StartMainPage extends Component {
     render() {
       if (!this.props.userName) {
           return (
-            <div className="StartMainPage">
+          <div className="StartMainPage">
+            <Header />
               <Jumbotron>
                 <h1>Wake up!</h1>
                 <p>This application advises your child to the school.</p>
                 <p><Button bsStyle="primary">Learn more</Button></p>
               </Jumbotron>          
-        </div>
+          </div>
       );
       }else{
         return (
           <div className="UserAlarms">
+            <Header />
             <UserAlarms />             
           </div>
           );

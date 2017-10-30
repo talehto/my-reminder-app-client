@@ -7,6 +7,18 @@
   height: 80px;
 }
 
+.rec-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  font-size: 32px;
+  color: red;
+  background-color: white;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -39,4 +51,7 @@
   margin-top: 100px;
 }
 
+#NewAlarmPage {
+  margin-top: 100px; 
+}
 

@@ -4,7 +4,7 @@ import {Map,List, fromJS} from 'immutable';
 const initialState = fromJS(
 	{
 		userName:"", 
-		showCreateNewAlarmDialog:false, 
+		showCreateNewAlarmPage:false, 
 		showAddAlarmDialog: false,
 		allAlarms: []
 	});
@@ -15,9 +15,9 @@ export default function(state = initialState, action) {
   case 'SET_USER_NAME':
     console.log("REDUCER Setting name:")
     return state.set('userName', action.userName);
-  case 'SHOW_CREATE_NEW_ALARM_DIALOG':
-  	console.log("REDUCER Setting showCreateNewAlarmDialog:")
-  	return state.set('showCreateNewAlarmDialog',action.showCreateNewAlarmDialog);
+  case 'SHOW_CREATE_NEW_ALARM_PAGE':
+  	console.log("REDUCER Setting showCreateNewAlarmPage:")
+  	return state.set('showCreateNewAlarmPage',action.showCreateNewAlarmPage);
   case 'SHOW_ADD_ALARM_DIALOG':
   	console.log("REDUCER Setting showAddAlarmDialog:")
   	return state.set('showAddAlarmDialog',action.showAddAlarmDialog);

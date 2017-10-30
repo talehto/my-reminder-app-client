@@ -10,7 +10,7 @@ class Header extends Component {
           <Grid>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/">Weak up</a>
+                <a href="/">Wake up</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>

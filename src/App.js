@@ -5,8 +5,9 @@ import { BrowserRouter as Router, Route, IndexRoute, Switch } from 'react-router
 //import logo from './logo.svg';
 
 import './App.css';
-import Header from './Header'
+//import Header from './Header'
 import StartMainPage from './StartMainPage'
+import NewAlarmPage from './NewAlarmPage'
 
 class App extends Component {
     constructor(props) {
@@ -18,10 +19,10 @@ class App extends Component {
     <div>
         <Router>
         	<Switch>
-            	<Route path="/" component={Header}/>
+            	<Route exact path="/" component={StartMainPage}/>
+              <Route exact path="/newalarm" component={NewAlarmPage}/>
           	</Switch>
         </Router>
-        <StartMainPage />
     </div>
     );
   }

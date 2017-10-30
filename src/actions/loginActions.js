@@ -9,23 +9,13 @@ export const setUserName = (userName) => {
   }
 };
 
-export const setShowCreateNewAlarmDialog = (showCreateNewAlarmDialog) => {
+export const setShowCreateNewAlarmPage = (showCreateNewAlarmPage) => {
   // Return action
   return {
     // Unique identifier
-    type: 'SHOW_CREATE_NEW_ALARM_DIALOG',
+    type: 'SHOW_CREATE_NEW_ALARM_PAGE',
     // Payload
-    showCreateNewAlarmDialog: showCreateNewAlarmDialog
-  }
-};
-
-export const setShowAddAlarmDialog = (showAddAlarmDialog) => {
-  // Return action
-  return {
-    // Unique identifier
-    type: 'SHOW_ADD_ALARM_DIALOG',
-    // Payload
-    showAddAlarmDialog: showAddAlarmDialog
+    showCreateNewAlarmPage: showCreateNewAlarmPage
   }
 };
 
@@ -48,6 +38,4 @@ export const setNewUserAlarm = (newUserAlarm) => {
     newUserAlarm: newUserAlarm
   }
 };
-
-
 
