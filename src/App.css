@@ -55,3 +55,31 @@
   margin-top: 100px; 
 }
 
+#NewAlarmName {
+ margin-right: 10px;
+ margin-left: 10px;
+}
+
+#record-button-row{
+  margin-bottom: 10px;
+}
+
+#setting-alarm-time-field {
+  margin-bottom: 10px; 
+}
+
+.oscilloscope {
+    width: 450px;
+    padding-left:  30px;
+    padding-right: 30px;
+}
+
+
+@media screen and (max-width: 500px) {
+  .oscilloscope {
+    width: 300px;
+    padding-left:  30px;
+    padding-right: 30px;
+  }
+}
+

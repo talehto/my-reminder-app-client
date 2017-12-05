@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Glyphicon } from 'react-bootstrap';
+import { Glyphicon, Button } from 'react-bootstrap';
 
 class PlayAudioButton extends Component {
 
@@ -40,10 +40,11 @@ class PlayAudioButton extends Component {
     	const { isPlaying } = this.state;
     	var playButton;
     	if(isPlaying){
-    		playButton = <Glyphicon onClick={this.buttonClicked} glyph={"glyphicon glyphicon-pause"}/>
+    		playButton = <Button bsStyle="primary" bsSize="large" onClick={this.buttonClicked}><Glyphicon glyph={"glyphicon glyphicon-pause"}/></Button>
     	}else{
-    		playButton = <Glyphicon onClick={this.buttonClicked} glyph={"glyphicon glyphicon-play-circle"}/>
+    		playButton = <Button bsStyle="primary" bsSize="large" onClick={this.buttonClicked}><Glyphicon glyph={"glyphicon glyphicon-play-circle"}/></Button>
     	}
+        //
     	return (
     		<div>
     			<audio src={this.props.blob}

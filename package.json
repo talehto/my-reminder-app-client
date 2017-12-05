@@ -5,14 +5,17 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "immutable": "^3.8.1",
+    "moment": "^2.19.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
+    "react-datetime": "^2.10.3",
     "react-dom": "^15.6.1",
     "react-mic": "^9.0.0",
     "react-native-vector-icons": "^4.4.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
+    "react-stepzilla": "^4.6.3",
     "redux": "^3.7.2"
   },
   "scripts": {

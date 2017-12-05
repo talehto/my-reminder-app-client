@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'react-stepzilla/src/css/main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux'
@@ -11,8 +12,6 @@ import registerServiceWorker from './registerServiceWorker';
 import * as loginActions from './actions/loginActions';
 
 const store = createStore(reducer)
-//store.dispatch(loginActions.setUserName(""))
-//store.dispatch(loginActions.setShowCreateNewAlarmDialog(false))
 const render = () => ReactDOM.render(
 	<Provider store={store}>
 		<App />
