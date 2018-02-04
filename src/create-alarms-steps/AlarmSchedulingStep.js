@@ -6,13 +6,17 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css'
 import moment from 'moment';
 import AlarmTimeListItemOfNewAlarm from './AlarmTimeListItemOfNewAlarm'
+//import validation from 'react-validation-mixin';
+//import strategy from 'joi-validation-strategy';
+//import Joi from 'joi';
 
 class AlarmSchedulingStep extends Component {
 
 	constructor(props) {
     	super(props);
 
-    	this.getMondayAlarmTimes = this.getMondayAlarmTimes.bind(this);
+    	this.getAlarmTimesUiTable = this.getAlarmTimesUiTable.bind(this);
+    	//this.getAlarmCountPerDay = this.getAlarmCountPerDay.bind(this);
 
     	this.focousOut = this.focousOut.bind(this);
     	this.weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -23,6 +27,17 @@ class AlarmSchedulingStep extends Component {
      		selectedTime: "08:00",
      		alarmTimes: Map({ 0: Set(), 1: Set(), 2: Set(), 3: Set(), 4: Set(), 5: Set(), 6: Set() })
     	}
+
+    	this.isValidated = this.isValidated.bind(this);
+    	this.getValidatorData = this.getValidatorData.bind(this);
+
+    	//this.validatorTypes = {
+    	//	//TODO: Check this.
+      	//	alarmTimes: Joi.object().size
+    	//};
+    	//this.isValidated = this.isValidated.bind(this);
+    	//this.getValidatorData = this.getValidatorData.bind(this);
+
     }
 
     daySelected = (key) => {
@@ -49,6 +64,7 @@ class AlarmSchedulingStep extends Component {
   handleAddTimeClick = () => {
   	console.log("time will be added");
   	//console.log(this.state.selectedTime);
+  	//console.log("this.state.alarmTimes.toList().size: " + this.state.alarmTimes.toSetSeq())
   	this.setState(({alarmTimes}) => ({
       alarmTimes: alarmTimes.update(this.state.selectedDayInNum, list => list.add(this.state.selectedTime))
     }));
@@ -63,14 +79,52 @@ class AlarmSchedulingStep extends Component {
     }));	
 	}
 
+  	isValidated() {
+  		console.log('AlarmSchedulingStep.isValidated() called')
+  		console.log('this.state.alarmTimes: ' + this.state.alarmTimes)
+	    let isDataValid = false;
+
+	    let count = 0;
+	    count += this.getAlarmCountPerDay('0');
+	    count += this.getAlarmCountPerDay('1');
+	    count += this.getAlarmCountPerDay('2');
+	    count += this.getAlarmCountPerDay('3');
+	    count += this.getAlarmCountPerDay('4');
+	    count += this.getAlarmCountPerDay('5');
+	    count += this.getAlarmCountPerDay('6');
+	    //count += this.state.alarmTimes.get(6).count();
+
+	    if(count === 0){
+	    	return false;
+	    }
+
+	    if (this.props.getStore().alarmTimes != this.state.alarmTimes) { // only update store of something changed
+	      this.props.updateStore({
+	        ...this.getValidatorData()
+	      });
+		}  
+
+	    return true;
+  }
+
+  getAlarmCountPerDay = (dayAsNum) => {
+    	return this.state.alarmTimes.get(dayAsNum).count();
+    }
+
+    getValidatorData() {
+	    return {
+	      alarmTimes: this.state.alarmTimes,
+	    }
+  };
+
     render() {
-    	var mondayAlarms = this.getMondayAlarmTimes('0','Monday');
-    	var tuesdayAlarms = this.getMondayAlarmTimes('1','Tuesday');
-    	var wednesdayAlarms = this.getMondayAlarmTimes('2','Wednesday');
-    	var thursdayAlarms = this.getMondayAlarmTimes('3','Thursday');
-    	var fridayAlarms = this.getMondayAlarmTimes('4','Friday');
-    	var saturdayAlarms = this.getMondayAlarmTimes('5','Saturday');
-    	var sundayAlarms = this.getMondayAlarmTimes('6','Sunday');
+    	var mondayAlarms = this.getAlarmTimesUiTable('0','Monday');
+    	var tuesdayAlarms = this.getAlarmTimesUiTable('1','Tuesday');
+    	var wednesdayAlarms = this.getAlarmTimesUiTable('2','Wednesday');
+    	var thursdayAlarms = this.getAlarmTimesUiTable('3','Thursday');
+    	var fridayAlarms = this.getAlarmTimesUiTable('4','Friday');
+    	var saturdayAlarms = this.getAlarmTimesUiTable('5','Saturday');
+    	var sundayAlarms = this.getAlarmTimesUiTable('6','Sunday');
 
     	return (
     		<div className="step step2">
@@ -110,7 +164,7 @@ class AlarmSchedulingStep extends Component {
     	)
     }
 
-    getMondayAlarmTimes(dayAsNum, dayAsStr) {
+    getAlarmTimesUiTable(dayAsNum, dayAsStr) {
 		if(this.state.alarmTimes.get(dayAsNum).count() != 0){
     		return (
     			<div className="row">
@@ -130,9 +184,10 @@ class AlarmSchedulingStep extends Component {
     		return '';
     	}
 	}
-
+    
 }
 //
 
 export default AlarmSchedulingStep;
+//export default validation(strategy)(AlarmSchedulingStep);
 
