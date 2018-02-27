@@ -19,7 +19,8 @@
     "react-scripts": "1.0.10",
     "react-stepzilla": "^4.6.3",
     "react-validation-mixin": "^5.4.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "uuid": "^3.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

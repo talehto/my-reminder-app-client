@@ -6,7 +6,8 @@ const initialState = fromJS(
 		userName:"", 
 		showCreateNewAlarmPage:false, 
 		showAddAlarmDialog: false,
-		allAlarms: []
+		allAlarms: List()
+    //newAlarm:null
 	});
 
 export default function(state = initialState, action) {
@@ -23,8 +24,8 @@ export default function(state = initialState, action) {
   	return state.set('showAddAlarmDialog',action.showAddAlarmDialog);
   case 'NEW_ALARM':
   	return state.update('allAlarms', alarms => alarms.push(action.newAlarm));
-  case 'NEW_USER_ALARM':
-  	return state.set('newUserAlarm', action.newUserAlarm);
+  //case 'NEW_USER_ALARM':
+  //	return state.set('newUserAlarm', action.newUserAlarm);
   default:
     return state;
   }

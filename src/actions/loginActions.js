@@ -29,13 +29,13 @@ export const setNewAlarm = (newAlarmName) => {
   }
 };
 
-export const setNewUserAlarm = (newUserAlarm) => {
-  // Return action
-  return {
-    // Unique identifier
-    type: 'NEW_USER_ALARM',
-    // Payload
-    newUserAlarm: newUserAlarm
-  }
-};
+//export const setNewUserAlarm = (newUserAlarm) => {
+//  // Return action
+//  return {
+//    // Unique identifier
+//    type: 'NEW_USER_ALARM',
+//    // Payload
+//    newUserAlarm: newUserAlarm
+//  }
+//};
 

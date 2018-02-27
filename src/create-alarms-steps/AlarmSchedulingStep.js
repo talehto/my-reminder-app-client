@@ -6,9 +6,6 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css'
 import moment from 'moment';
 import AlarmTimeListItemOfNewAlarm from './AlarmTimeListItemOfNewAlarm'
-//import validation from 'react-validation-mixin';
-//import strategy from 'joi-validation-strategy';
-//import Joi from 'joi';
 
 class AlarmSchedulingStep extends Component {
 
@@ -16,7 +13,6 @@ class AlarmSchedulingStep extends Component {
     	super(props);
 
     	this.getAlarmTimesUiTable = this.getAlarmTimesUiTable.bind(this);
-    	//this.getAlarmCountPerDay = this.getAlarmCountPerDay.bind(this);
 
     	this.focousOut = this.focousOut.bind(this);
     	this.weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -30,14 +26,6 @@ class AlarmSchedulingStep extends Component {
 
     	this.isValidated = this.isValidated.bind(this);
     	this.getValidatorData = this.getValidatorData.bind(this);
-
-    	//this.validatorTypes = {
-    	//	//TODO: Check this.
-      	//	alarmTimes: Joi.object().size
-    	//};
-    	//this.isValidated = this.isValidated.bind(this);
-    	//this.getValidatorData = this.getValidatorData.bind(this);
-
     }
 
     daySelected = (key) => {
@@ -63,8 +51,6 @@ class AlarmSchedulingStep extends Component {
 
   handleAddTimeClick = () => {
   	console.log("time will be added");
-  	//console.log(this.state.selectedTime);
-  	//console.log("this.state.alarmTimes.toList().size: " + this.state.alarmTimes.toSetSeq())
   	this.setState(({alarmTimes}) => ({
       alarmTimes: alarmTimes.update(this.state.selectedDayInNum, list => list.add(this.state.selectedTime))
     }));
@@ -114,6 +100,7 @@ class AlarmSchedulingStep extends Component {
     getValidatorData() {
 	    return {
 	      alarmTimes: this.state.alarmTimes,
+	      saveNewAlarm: true
 	    }
   };
 
