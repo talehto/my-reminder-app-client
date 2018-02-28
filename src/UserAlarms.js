@@ -34,6 +34,7 @@ class UserAlarms extends Component {
 
 	render() {
 		if (this.props.showCreateNewAlarmPage) {
+			console.log('UserAlarms.render showCreateNewAlarmPage is TRUE')
 	  		return <Redirect to="/newalarm" push={true} />
 	  		//
 	    }else{

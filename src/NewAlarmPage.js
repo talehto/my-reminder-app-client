@@ -16,9 +16,6 @@ import uuid from 'uuid/v4'
 
 import { Redirect } from 'react-router-dom'
 
-//import NameStep from './create-alarms-steps/NameStep'
-//import LastStep from './create-alarms-steps/LastStep'
-
 class NewAlarmPage extends Component {
 
 	constructor(props) {
@@ -58,16 +55,9 @@ class NewAlarmPage extends Component {
 
     render() {
 
-    	if(this.newAlarmData.saveNewAlarm === true){
-    		return <Redirect to="/" push={true} />
-    		//
+    	if (this.props.showCreateNewAlarmPage) {
+    		this.props.setShowCreateNewAlarmPage(false)
     	}
-
-    	//const steps =
-	    //[
-	    //  {name: 'Name', component: <NameStep/>},
-	    //  {name: 'Last', component: <LastStep/>},
-	    //]
 
     	const steps =
 	    [
@@ -82,7 +72,7 @@ class NewAlarmPage extends Component {
 				<div className='step-progress col-md-6 col-sm-8 col-xs-8'>
         			<StepZilla steps={steps}
         				preventEnterSubmission={true}
-            			//hocValidationAppliedTo={[0,1]}
+            			hocValidationAppliedTo={[0,1]}
             			nextTextOnFinalActionStep={"Save"}
             			nextButtonCls='btn btn-prev btn-primary btn-primary pull-right'
                   		backButtonCls='btn btn-next btn-primary btn-primary pull-left'
@@ -95,18 +85,18 @@ class NewAlarmPage extends Component {
 
 }
 
-//const mapStateToProps = (state, ownProps) => {
-//  return {
-//    newAlarmReduxData: state.get('newAlarmReduxData')
-//  }
-//};
-
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    setNewAlarm: newAlarmData => dispatch(loginActions.setNewAlarm(newAlarmData))
+    showCreateNewAlarmPage: state.get('showCreateNewAlarmPage')
   }
 };
 
-export default NewAlarmPage;
-//export default connect(null,mapDispatchToProps)(NewAlarmPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setNewAlarm: newAlarmData => dispatch(loginActions.setNewAlarm(newAlarmData)),
+    setShowCreateNewAlarmPage: showCreateNewAlarmPage => dispatch(loginActions.setShowCreateNewAlarmPage(showCreateNewAlarmPage))
+  }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewAlarmPage);
 

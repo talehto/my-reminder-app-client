@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
-
 export class AlarmSavedStep extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +42,6 @@ export class AlarmSavedStep extends Component {
                   <label className="col-md-12 control-label">
                     {
                         <div>
-                          <Link to='/'>Back to all alarms</Link>
                           <h2>Data was successfully saved...</h2>
                           <p><Button id="addAlarmButton" bsStyle="primary" onClick={this.handleBackToAllAlarmsPage} >New alarm</Button></p>
                         </div> //
