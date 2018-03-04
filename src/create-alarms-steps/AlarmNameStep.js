@@ -16,7 +16,7 @@ class AlarmNameStep extends Component {
     	};
 
     	this.validatorTypes = {
-      		alarmName: Joi.string().regex(/^[a-zA-Z0-9]{1,3}$/)
+      		alarmName: Joi.string().regex(/^[a-zA-Z0-9 ]{1,20}$/)
     	};
 
     	this.handleChange = this.handleChange.bind(this);

@@ -8,14 +8,13 @@ import AlarmListItem from './AlarmListItem'
 import { connect } from 'react-redux'
 import * as loginActions from './actions/loginActions';
 
+import AlarmTimeListItemOfNewAlarm from './create-alarms-steps/AlarmTimeListItemOfNewAlarm'
+
 class UserAlarms extends Component {
 	constructor(props) {
     	super(props);
     	this.handleOpenCreateAlarmPage = this.handleOpenCreateAlarmPage.bind(this);
-    	//this.getAlarmsOfOneDay = this.getAlarmsOfOneDay.bind(this);
-    	//this.getTopOfAlarmTable = this.getTopOfAlarmTable.bind(this);
-    	//this.getBottomOfAlarmTable = this.getBottomOfAlarmTable.bind(this);
-    	//this.getTimesOfOneAlarmPerDay = this.getTimesOfOneAlarmPerDay.bind(this);
+    	this.getAlarmsOfOneDay = this.getAlarmsOfOneDay.bind(this);
   	}
 
   	handleOpenCreateAlarmPage(){
@@ -37,10 +36,15 @@ class UserAlarms extends Component {
 			console.log('UserAlarms.render showCreateNewAlarmPage is TRUE')
 	  		return <Redirect to="/newalarm" push={true} />
 	  		//
-	    }else{
+	    } //else{
 
 		var mondayAlarms = this.getAlarmsOfOneDay('0','Monday');
-		//var tuesdayAlarms = this.getAlarmsOfOneDay('1','Tuesday');
+		var tuesdayAlarms = this.getAlarmsOfOneDay('1','Tuesday');
+		var wednesdayAlarms = this.getAlarmsOfOneDay('2','Wednesday');
+		var thursdayAlarms = this.getAlarmsOfOneDay('3','Thursday');
+		var fridayAlarms = this.getAlarmsOfOneDay('4','Friday');
+		var saturdayAlarms = this.getAlarmsOfOneDay('5','Saturday');
+		var sundayAlarms = this.getAlarmsOfOneDay('6','Sunday');
 
 	    return (
 		  	<div>
@@ -50,7 +54,13 @@ class UserAlarms extends Component {
 		  					<p><Button id="addAlarmButton" bsStyle="primary" onClick={this.handleOpenCreateAlarmPage} >New alarm</Button></p>
 		  				</Col>
 		  			</Row>
-					{mondayAlarms}					
+					{mondayAlarms}
+					{tuesdayAlarms}
+					{wednesdayAlarms}
+					{thursdayAlarms}
+					{fridayAlarms}
+					{saturdayAlarms}
+					{sundayAlarms}
 			  		<Row>
 				  		<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
 				  		<Panel bsStyle="primary" header="Tuesday">
@@ -66,71 +76,40 @@ class UserAlarms extends Component {
 		  		</Grid>
 		  	</div> 
 		    );
-	    }
+	    //}
 	}
 	//
 
-		//getBottomOfAlarmTable = () => {
-	//getBottomOfAlarmTable() {
-	//	return (</ListGroup>
-	//			</Panel>
-	//		</Col>
-	//	</Row>
-	//	)
-	//}
-
-	//getAlarmsOfOneDay(dayAsNum, dayAsStr){
-	getAlarmsOfOneDay = (dayAsNum, dayAsStr) => {
+	getAlarmsOfOneDay(dayAsNum, dayAsStr){
+		console.log('UserAlarms.getAlarmsOfOneDay ')
+		this.props.allAlarms.forEach(item => console.log('allAlarms: ' + item.alarmName))
 		var alarmsOfOneDay = this.props.allAlarms.filter( alarmItem => alarmItem.alarmTimes.get(dayAsNum).count() != 0 )
-		if(alarmsOfOneDay === null){
+		if(alarmsOfOneDay.count() === 0){
 			console.log('UserAlarms.getAlarmsOfOneDay alarmsOfOneDay is null')
 			return '';
 		}else{
-			this.props.allAlarms.forEach( item => console.log(item.alarmName))
 			return (
 				<Row>
 			  		<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
 				  		<Panel bsStyle="primary" header={dayAsStr}>
 						    <ListGroup fill>
-						    {alarmsOfOneDay.forEach( item => {
-						    	item.alarmTimes.get(dayAsNum).map(item2 =>
-	    	  					<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} 
-	    	  		alarmTime={item2} alarmTitle={item.alarmName}/> 
-		    		)}  )}
+						    {alarmsOfOneDay.map( item => {
+						    	return item.alarmTimes.get(dayAsNum).map(item2 => {
+						    	return (
+						    		<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} 
+					    	  		alarmTime={item2} alarmTitle={item.alarmName}/> 
+					    	  		//
+						      	)}
+		    					)} //
+		    				)}
 						    </ListGroup>
 						</Panel>
 					</Col>
 				</Row>
 			)
 		}
-		//var allDataPerDay = this.getTopOfAlarmTable(dayAsStr)
-		//alarmsOfOneDay.forEach( item => {allDataPerDay = allDataPerDay + this.getTimesOfOneAlarmPerDay(dayAsNum, dayAsStr, item)} )
-		//allDataPerDay = allDataPerDay + this.getBottomOfAlarmTable()
-
-		//return allDataPerDay;
 	}
-
-	//getTopOfAlarmTable(dayAsStr) {
-	//getTopOfAlarmTable = (dayAsStr) => {
-	//	return (
-	//		<Row>
-	//	  		<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
-	//		  		<Panel bsStyle="primary" header={dayAsStr}>
-	//				    <ListGroup fill>
-	//	)
-	//}
-
-	//getTimesOfOneAlarmPerDay(dayAsNum, dayAsStr, alarmItem) {
-	//getTimesOfOneAlarmPerDay = (dayAsNum, dayAsStr, alarmItem) => {
-	//	return (
-	//		{alarmItem.alarmTimes.get(dayAsNum).map(item =>
-	//    	  	<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} 
-	//    	  		alarmTime={item} alarmTitle={alarmItem.alarmName}/> //
-	//	    )}
-    //	)
-	//}
 }
-//
 
 const mapStateToProps = (state, ownProps) => {
   return {

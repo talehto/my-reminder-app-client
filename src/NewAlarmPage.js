@@ -46,7 +46,7 @@ class NewAlarmPage extends Component {
     		var newObj = {
     			alarmId: uuid(),
     			alarmName: this.newAlarmData.alarmName,
-      			alarmRecord: this.newAlarmData.alarmRecord,
+      		alarmRecord: this.newAlarmData.alarmRecord,
      			alarmTimes: this.newAlarmData.alarmTimes
     		};
     		this.props.setNewAlarm(newObj)

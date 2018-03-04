@@ -166,7 +166,7 @@ class AlarmSchedulingStep extends Component {
 			  			</Panel>
 			  		</Col>
 		      	</div>
-		     )
+		     ) //
     	} else {
     		return '';
     	}
