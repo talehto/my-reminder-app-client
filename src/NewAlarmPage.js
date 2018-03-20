@@ -22,8 +22,8 @@ class NewAlarmPage extends Component {
     	super(props);
 
     	this.newAlarmData = {
-      		alarmName: '',
-      		alarmRecord: null,
+        alarmName: '',
+      	alarmRecord: null,
      		alarmTimes: Map({ 0: Set(), 1: Set(), 2: Set(), 3: Set(), 4: Set(), 5: Set(), 6: Set() }),
      		saveNewAlarm: false
     	};

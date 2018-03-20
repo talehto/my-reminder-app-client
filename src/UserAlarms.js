@@ -7,6 +7,7 @@ import './App.css';
 import AlarmListItem from './AlarmListItem'
 import { connect } from 'react-redux'
 import * as loginActions from './actions/loginActions';
+import {List} from 'immutable';
 
 import AlarmTimeListItemOfNewAlarm from './create-alarms-steps/AlarmTimeListItemOfNewAlarm'
 
@@ -23,12 +24,15 @@ class UserAlarms extends Component {
 
   	}
 
- 	handlePlayClick(){
+ 	handlePlayClick(alarmId){
 		console.log("Play pressed")
 	}
 
-	handleDeleteClick(){
+	handleDeleteClick(alarmId, alarmTime, dayNumber){
 		console.log("Delete note pressed")
+		
+		this.props.deleteAlarmTime(alarmId, alarmTime, dayNumber);
+		this.props.setDummyFlag(true);
 	}
 
 	render() {
@@ -36,7 +40,7 @@ class UserAlarms extends Component {
 			console.log('UserAlarms.render showCreateNewAlarmPage is TRUE')
 	  		return <Redirect to="/newalarm" push={true} />
 	  		//
-	    } //else{
+	    }
 
 		var mondayAlarms = this.getAlarmsOfOneDay('0','Monday');
 		var tuesdayAlarms = this.getAlarmsOfOneDay('1','Tuesday');
@@ -61,27 +65,14 @@ class UserAlarms extends Component {
 					{fridayAlarms}
 					{saturdayAlarms}
 					{sundayAlarms}
-			  		<Row>
-				  		<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
-				  		<Panel bsStyle="primary" header="Tuesday">
-						    <ListGroup fill>
-					    	  	<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} 
-					    	  		alarmTime={"9:30"} alarmTitle={"herätys aikaisin aamulla"}/>
-					        	<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)}
-					        	alarmTime={"10:30"} alarmTitle={"kouluun"} />
-					    	</ListGroup>
-				  		</Panel>
-				  		</Col>
-			  		</Row>
 		  		</Grid>
 		  	</div> 
-		    );
-	    //}
+		);
 	}
 	//
 
 	getAlarmsOfOneDay(dayAsNum, dayAsStr){
-		console.log('UserAlarms.getAlarmsOfOneDay ')
+		console.log('UserAlarms.getAlarmsOfOneDay dayAsNum: ' + dayAsNum)
 		this.props.allAlarms.forEach(item => console.log('allAlarms: ' + item.alarmName))
 		var alarmsOfOneDay = this.props.allAlarms.filter( alarmItem => alarmItem.alarmTimes.get(dayAsNum).count() != 0 )
 		if(alarmsOfOneDay.count() === 0){
@@ -97,7 +88,7 @@ class UserAlarms extends Component {
 						    	return item.alarmTimes.get(dayAsNum).map(item2 => {
 						    	return (
 						    		<AlarmListItem onPlayClick={this.handlePlayClick.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} 
-					    	  		alarmTime={item2} alarmTitle={item.alarmName}/> 
+					    	  		alarmTime={item2} alarmTitle={item.alarmName} alarmId={item.alarmId} dayNumber={dayAsNum}/> 
 					    	  		//
 						      	)}
 		    					)} //
@@ -114,13 +105,16 @@ class UserAlarms extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     showCreateNewAlarmPage: state.get('showCreateNewAlarmPage'),
-    allAlarms: state.get('allAlarms')
+    allAlarms: state.get('allAlarms'),
+    dummyFlag: state.get('dummyFlag'),
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setShowCreateNewAlarmPage: showCreateNewAlarmPage => dispatch(loginActions.setShowCreateNewAlarmPage(showCreateNewAlarmPage))
+    setShowCreateNewAlarmPage: showCreateNewAlarmPage => dispatch(loginActions.setShowCreateNewAlarmPage(showCreateNewAlarmPage)),
+    deleteAlarmTime: (alarmId, alarmTime, dayNumber) => dispatch(loginActions.deleteAlarmTime(alarmId, alarmTime, dayNumber)),
+    setDummyFlag: flag => dispatch(loginActions.setDummyFlag(flag)),
   }
 };
 

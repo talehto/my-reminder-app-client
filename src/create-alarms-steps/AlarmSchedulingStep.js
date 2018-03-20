@@ -62,7 +62,7 @@ class AlarmSchedulingStep extends Component {
 		console.log(dayIndexInMap);
 		this.setState(({alarmTimes}) => ({
       		alarmTimes: alarmTimes.update(dayIndexInMap, list => list.delete(deletedTime))
-    }));	
+    	}));	
 	}
 
   	isValidated() {

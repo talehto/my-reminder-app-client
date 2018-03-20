@@ -19,6 +19,16 @@ export const setShowCreateNewAlarmPage = (showCreateNewAlarmPage) => {
   }
 };
 
+export const setDummyFlag = (dummyFlag) => {
+  // Return action
+  return {
+    // Unique identifier
+    type: 'SET_DUMMY_FLAG',
+    // Payload
+    dummyFlag: dummyFlag
+  }
+};
+
 export const setNewAlarm = (newAlarmName) => {
   // Return action
   return {
@@ -29,13 +39,16 @@ export const setNewAlarm = (newAlarmName) => {
   }
 };
 
-//export const setNewUserAlarm = (newUserAlarm) => {
-//  // Return action
-//  return {
-//    // Unique identifier
-//    type: 'NEW_USER_ALARM',
-//    // Payload
-//    newUserAlarm: newUserAlarm
-//  }
-//};
+export const deleteAlarmTime = (alarmId, alarmTime, dayNumber) => {
+  // Return action
+  console.log('loginActions.setAllAlarms called')
+  return {
+    // Unique identifier
+    type: 'DELETE_ALARM_TIME',
+    // Payload
+    alarmId: alarmId,
+    alarmTime: alarmTime,
+    dayNumber: dayNumber
+  }
+};
 

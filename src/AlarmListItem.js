@@ -9,6 +9,16 @@ class AlarmListItem extends Component {
     	super(props);
   	}
 
+  	deleteClick = () => {
+		console.log("deleteClick pressed")
+		this.props.onDeleteClick(this.props.alarmId, this.props.alarmTime, this.props.dayNumber)
+	}
+
+	playClick = () => {
+		console.log("playClick pressed")
+		this.props.onPlayClick(this.props.alarmId)
+	}
+
   	render() {
   		return (
 	      	<li className="list-group-item">
@@ -16,10 +26,10 @@ class AlarmListItem extends Component {
 	      			<Col xs={3} sm={3} md={2}>{this.props.alarmTime}</Col>
 	      			<Col xs={4} sm={4} md={7}>{this.props.alarmTitle}</Col>
 	      			<Col xs={2} sm={2} md={1}>
-		        		<Glyphicon glyph={"glyphicon glyphicon-play-circle"} onClick={this.props.onPlayClick}/>
+		        		<Glyphicon glyph={"glyphicon glyphicon-play-circle"} onClick={this.playClick}/>
 					</Col>
 		        	<Col xs={2} sm={2} md={1}>
-		        	<Glyphicon glyph={"glyphicon glyphicon-trash"} onClick={this.props.onDeleteClick}/>
+		        	<Glyphicon glyph={"glyphicon glyphicon-trash"} onClick={this.deleteClick}/>
 		        </Col>
 		    </Row>
 	      </li>
