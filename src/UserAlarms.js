@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import * as ReactDOM from "react-dom";
 import { Redirect } from 'react-router-dom'
-import { Panel, ListGroup, ListGroupItem, Glyphicon, Button, Row, Col, Grid } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Glyphicon, Button, Row, Col, Container } from 'react-bootstrap';
 import './App.css';
 import AlarmListItem from './AlarmListItem'
 import { connect } from 'react-redux'
@@ -21,7 +21,6 @@ class UserAlarms extends Component {
   	handleOpenCreateAlarmPage(){
   		console.log("handleOpenCreateAlarmPage called")
   		this.props.setShowCreateNewAlarmPage(true)
-
   	}
 
  	handlePlayClick(alarmId){
@@ -52,10 +51,10 @@ class UserAlarms extends Component {
 
 	    return (
 		  	<div>
-		  		<Grid>
+		  		<Container>
 		  			<Row>
 		  				<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
-		  					<p><Button id="addAlarmButton" bsStyle="primary" onClick={this.handleOpenCreateAlarmPage} >New alarm</Button></p>
+		  					<p><Button id="addAlarmButton" variant="primary" onClick={this.handleOpenCreateAlarmPage} >New alarm</Button></p>
 		  				</Col>
 		  			</Row>
 					{mondayAlarms}
@@ -65,7 +64,7 @@ class UserAlarms extends Component {
 					{fridayAlarms}
 					{saturdayAlarms}
 					{sundayAlarms}
-		  		</Grid>
+		  		</Container>
 		  	</div> 
 		);
 	}
@@ -82,7 +81,7 @@ class UserAlarms extends Component {
 			return (
 				<Row>
 			  		<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
-				  		<Panel bsStyle="primary" header={dayAsStr}>
+				  		<Card variant="primary" header={dayAsStr}>
 						    <ListGroup fill>
 						    {alarmsOfOneDay.map( item => {
 						    	return item.alarmTimes.get(dayAsNum).map(item2 => {
@@ -94,7 +93,7 @@ class UserAlarms extends Component {
 		    					)} //
 		    				)}
 						    </ListGroup>
-						</Panel>
+						</Card>
 					</Col>
 				</Row>
 			)

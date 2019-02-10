@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, List, Set, fromJS } from 'immutable';
-import { Button, Form, FormGroup, FormControl, Row, Col, Grid } from 'react-bootstrap';
+import { Button, Form, Row, Col, Container } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import './App.css';
 import Header from './Header'

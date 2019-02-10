@@ -1,4 +1,35 @@
 
+import axios from 'axios';
+import setAuthToken from '../setAuthToken';
+import jwt_decode from 'jwt-decode';
+
+//export const registerUser2 = (user) => dispatch => {
+export const registerUser2 = (user) => {
+  return function (dispatch) {
+    console.log("loginActions.registerUser called");
+    axios.post('/api/user/register', user)
+            //.then(res => history.push('/'))
+            .then(res => createSuccessRegisterPost(res.data) )
+            .catch(err => createFailedRegisterPost(err));
+    }
+}
+
+export const createSuccessRegisterPost =  (data) => {
+  console.log("createSuccessRegisterPost called. Data: " + data.email)
+  return {
+    type: 'REGISTRATION_SUCCEED',
+    userName: data
+  }
+};
+
+export const createFailedRegisterPost =  (data) => {
+  console.log("createFailedRegisterPost called" + data)
+  return {
+    type: 'REGISTRATION_FAILED',
+    payload: data
+  }
+};
+
 export const setUserName = (userName) => {
   // Return action
   return {

@@ -8,6 +8,7 @@ import './App.css';
 //import Header from './Header'
 import StartMainPage from './StartMainPage'
 import NewAlarmPage from './NewAlarmPage'
+import RegisterUser from './RegisterUser'
 
 class App extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
         	<Switch>
             	<Route exact path="/" component={StartMainPage}/>
               <Route exact path="/newalarm" component={NewAlarmPage}/>
+              <Route exact path="/register" component={RegisterUser}/>
           	</Switch>
         </Router>
     </div>

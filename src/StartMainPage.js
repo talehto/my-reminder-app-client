@@ -17,9 +17,9 @@ class StartMainPage extends Component {
           <div className="StartMainPage">
             <Header />
               <Jumbotron>
-                <h1>Wake up!</h1>
-                <p>This application advises your child to the school.</p>
-                <p><Button bsStyle="primary">Learn more</Button></p>
+                <h1>Remind me!</h1>
+                <p>You can create alarms by this application.</p>
+                <p><Button variant="primary">Learn more</Button></p>
               </Jumbotron>          
           </div>
       );

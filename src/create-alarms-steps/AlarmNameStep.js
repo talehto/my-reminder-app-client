@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, FormControl, Row, Col, Grid, Alert } from 'react-bootstrap';
+import { Button, Form, Row, Col, Container, Alert } from 'react-bootstrap';
 import validation from 'react-validation-mixin';
 import strategy from 'joi-validation-strategy';
 import Joi from 'joi';
@@ -60,7 +60,7 @@ class AlarmNameStep extends Component {
   	}
 
   	renderHelpText(message, id) {
-  	  return (<div><Alert bsStyle="warning"><strong>{message}</strong></Alert></div>)
+  	  return (<div><Alert variant="warning"><strong>{message}</strong></Alert></div>)
   	};
 	//
 
@@ -98,8 +98,6 @@ class AlarmNameStep extends Component {
     }
 
 }
-
-//export default AlarmNameStep;
+//
 export default validation(strategy)(AlarmNameStep);
 
-//<FormControl type="text" placeholder="alarm name" onChange={this.handleChange} bsSize="large" ref="alarmName" name="alarmName" onBlur={this.props.handleValidation('alarmName')}/>

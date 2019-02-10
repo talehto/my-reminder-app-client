@@ -3,11 +3,14 @@ import {Map, List, fromJS} from 'immutable';
 
 const initialState = fromJS(
 	{
-		userName:"", 
+		userName:"",
+    user: {},
+    isAuthenticated: false,
 		showCreateNewAlarmPage:false, 
 		showAddAlarmDialog: false,
 		allAlarms: List(),
     dummyFlag: false,
+    state: 'INITIAL',
 	});
 
 export default function(state = initialState, action) {

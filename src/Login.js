@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar, ButtonGroup, Navbar } from 'react-bootstrap';
+import { Form, Button, ButtonToolbar, ButtonGroup, Navbar } from 'react-bootstrap';
 import './App.css';
 import { connect } from 'react-redux'
 import * as loginActions from './actions/loginActions';
 
 class Login extends Component {
 
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
@@ -44,7 +44,7 @@ class Login extends Component {
             </Navbar.Text>
             {' '}
             <ButtonGroup>
-            <Button id="signInButton" className="navbar-btn" bsStyle="primary" type="submit" onClick={this.handleLogoutClick}>
+            <Button id="signInButton" className="navbar-btn" variant="primary" type="submit" onClick={this.handleLogoutClick}>
               Sign out
             </Button>
             </ButtonGroup>
@@ -55,22 +55,22 @@ class Login extends Component {
       return (
         <div className="Login">
           <Form inline>
-            <FormGroup controlId="formInlineName">
+            <Form.Group controlId="formInlineName">
               {' '}
-              <FormControl type="text" placeholder="Username" onChange={this.handleChange} />
-            </FormGroup>
+              <Form.Control type="text" placeholder="Email" onChange={this.handleChange} />
+            </Form.Group>
             {' '}
-            <FormGroup cononChange={this.handleChange}trolId="formInlineEmail">
+            <Form.Group cononChange={this.handleChange}trolId="formInlineEmail">
               {' '}
-              <FormControl type="email" placeholder="Password" />
-            </FormGroup>
+              <Form.Control type="email" placeholder="Password" />
+            </Form.Group>
             {' '}
             <ButtonGroup>
-            <Button id="signInButton" className="navbar-btn" bsStyle="primary" type="submit" 
+            <Button id="signInButton" className="navbar-btn" variant="primary" type="submit" 
              onClick={this.handleLoginClick}>
               Sign in
             </Button>
-            <Button className="navbar-btn" bsStyle="primary" type="submit">
+            <Button className="navbar-btn" variant="primary" type="submit">
               Register
               </Button>
             </ButtonGroup>

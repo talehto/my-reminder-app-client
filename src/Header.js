@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { Grid, Navbar, FormGroup, FormControl, Button, ControlLabel } from 'react-bootstrap';
+import { Container, Navbar, Button, Form } from 'react-bootstrap';
 
 import Login from './Login'
+import RegisterUser from './RegisterUser'
 
 class Header extends Component {
     render() {
     return (
-      <Navbar inverse fixedTop fluid>
-          <Grid>
-            <Navbar.Header>
+      <Navbar variant="dark" fixed="top">
+          <Container>
               <Navbar.Brand>
-                <a href="/">Wake up</a>
+                <a href="/">My Reminder</a>
               </Navbar.Brand>
               <Navbar.Toggle />
-            </Navbar.Header>
             <Navbar.Collapse>
-              <Navbar.Form>
+              <Form inline>
                 <Login />
-              </Navbar.Form>
+              </Form>
             </Navbar.Collapse>
-          </Grid>
+          </Container>
         </Navbar>
     );
   }

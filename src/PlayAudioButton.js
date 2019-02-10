@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import { Glyphicon, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class PlayAudioButton extends Component {
 
@@ -40,9 +41,9 @@ class PlayAudioButton extends Component {
     	const { isPlaying } = this.state;
     	var playButton;
     	if(isPlaying){
-    		playButton = <Button bsStyle="primary" bsSize="large" onClick={this.buttonClicked}><Glyphicon glyph={"glyphicon glyphicon-pause"}/></Button>
+    		playButton = <Button variant="primary" size="lg" onClick={this.buttonClicked}><FontAwesomeIcon  icon="pause"/></Button>
     	}else{
-    		playButton = <Button bsStyle="primary" bsSize="large" onClick={this.buttonClicked}><Glyphicon glyph={"glyphicon glyphicon-play-circle"}/></Button>
+    		playButton = <Button variant="primary" size="lg" onClick={this.buttonClicked}><FontAwesomeIcon  icon="play-circle"/></Button>
     	}
         //
     	return (

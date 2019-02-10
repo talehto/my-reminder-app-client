@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 import * as ReactDOM from "react-dom";
-import { Panel, ListGroup, ListGroupItem, Glyphicon, Button, Row, Col, Grid } from 'react-bootstrap';
+import { Panel, ListGroup, ListGroupItem, Button, Row, Col, Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css';
 
 class AlarmTimeListItemOfNewAlarm extends Component {
@@ -20,7 +21,7 @@ class AlarmTimeListItemOfNewAlarm extends Component {
 	      		<Row>
 	      			<Col xs={8} sm={10} md={10}>{this.props.alarmTime}</Col>
 		        	<Col xs={1} sm={2} md={1}>
-		        	<Glyphicon glyph={"glyphicon glyphicon-trash"} onClick={this.deleteClick}/>
+		        	<FontAwesomeIcon  icon="trash-alt" onClick={this.deleteClick}/>
 		        </Col>
 		    </Row>
 	      </li>

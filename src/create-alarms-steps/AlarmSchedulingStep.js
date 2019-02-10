@@ -1,7 +1,7 @@
 
 import { Map, List, Set, fromJS } from 'immutable';
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, FormControl, Row, Col, Grid, DropdownButton, MenuItem, ButtonGroup, Panel, ListGroup } from 'react-bootstrap';
+import { Button, Form, Row, Col, Container, DropdownButton, Dropdown, ButtonGroup, Card, ListGroup } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css'
 import moment from 'moment';
@@ -123,18 +123,18 @@ class AlarmSchedulingStep extends Component {
 		            				<Datetime value={this.state.selectedTime} dateFormat={false} onChange={this.timeChanged} timeFormat="HH:mm" onBlur={this.focousOut} />
 		          				</div>
 		          				<div className="col-md-2 col-sm-3 col-xs-3">
-		            				<DropdownButton bsStyle="primary" title={this.state.selectedDay} onSelect={this.daySelected}>
-      									<MenuItem eventKey="0">Monday</MenuItem>
-									    <MenuItem eventKey="1">Tuesday</MenuItem>
-									    <MenuItem eventKey="2">Wednesday</MenuItem>
-									    <MenuItem eventKey="3">Thursday</MenuItem>
-									    <MenuItem eventKey="4">Friday</MenuItem>
-									    <MenuItem eventKey="5">Saturday</MenuItem>
-									    <MenuItem eventKey="6">Sunday</MenuItem>
+		            				<DropdownButton variant="primary" title={this.state.selectedDay} onSelect={this.daySelected}>
+      									<Dropdown.Item eventKey="0">Monday</Dropdown.Item>
+									    <Dropdown.Item eventKey="1">Tuesday</Dropdown.Item>
+									    <Dropdown.Item eventKey="2">Wednesday</Dropdown.Item>
+									    <Dropdown.Item eventKey="3">Thursday</Dropdown.Item>
+									    <Dropdown.Item eventKey="4">Friday</Dropdown.Item>
+									    <Dropdown.Item eventKey="5">Saturday</Dropdown.Item>
+									    <Dropdown.Item eventKey="6">Sunday</Dropdown.Item>
 									</DropdownButton>
 		          				</div>
 		          				<div className="col-md-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" id="add-time-button-col">
-	          						<Button id="addTimeButton" bsStyle="primary" block onClick={this.handleAddTimeClick}>Add time</Button>
+	          						<Button id="addTimeButton" variant="primary" block onClick={this.handleAddTimeClick}>Add time</Button>
 	          					</div>
 	          				</div>
 		         		</div>
@@ -156,14 +156,14 @@ class AlarmSchedulingStep extends Component {
     		return (
     			<div className="row">
 					<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>
-			        	<Panel bsStyle="primary" header={dayAsStr}>
+			        	<Card variant="primary" header={dayAsStr}>
 						    <ListGroup fill>
 						    	{this.state.alarmTimes.get(dayAsNum).map(item =>   
 						    	  	<AlarmTimeListItemOfNewAlarm onDeleteClick={this.handleDeleteClick} 
 						    	  		alarmTime={item} dayIndexInMap={dayAsNum}/>
 						    	)}
 					    	</ListGroup>
-			  			</Panel>
+			  			</Card>
 			  		</Col>
 		      	</div>
 		     ) //

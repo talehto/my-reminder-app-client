@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, FormControl, Row, Col, Grid } from 'react-bootstrap';
+import { Button, Form, Row, Col, Container } from 'react-bootstrap';
 import { ReactMic } from 'react-mic';
 import './../App.css';
 import mic from './../mic.svg';
@@ -80,9 +80,9 @@ class AlarmRecordingStep extends Component {
     	const { isRecording } = this.state;
     	var recordButton;
     	if(isRecording){
-    		recordButton = <Button onClick={this.stopRecording} bsSize="small" bsStyle="primary"><img src={stop} class="rec-icon"  alt="mymic" /></Button>
+    		recordButton = <Button onClick={this.stopRecording} bsSize="small" variant="primary"><img src={stop} class="rec-icon"  alt="mymic" /></Button>
     	} else {
-    		recordButton = <Button onClick={this.startRecording} bsSize="small" bsStyle="primary"><img src={mic} class="rec-icon"  alt="mymic" /></Button>
+    		recordButton = <Button onClick={this.startRecording} bsSize="small" variant="primary"><img src={mic} class="rec-icon"  alt="mymic" /></Button>
     	}
     	return (
     		<div className="step step2">

@@ -43,7 +43,7 @@ export class AlarmSavedStep extends Component {
                     {
                         <div>
                           <h2>Data was successfully saved...</h2>
-                          <p><Button id="addAlarmButton" bsStyle="primary" onClick={this.handleBackToAllAlarmsPage} >Done</Button></p>
+                          <p><Button id="addAlarmButton" variant="primary" onClick={this.handleBackToAllAlarmsPage} >Done</Button></p>
                         </div> //
                     }
                   </label>
