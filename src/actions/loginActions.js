@@ -4,10 +4,16 @@ import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 //export const registerUser2 = (user) => dispatch => {
-export const registerUser2 = (user) => {
+export const registerUser = (user) => {
   return function (dispatch) {
     console.log("loginActions.registerUser called");
-    axios.post('/api/user/register', user)
+    //axios.post('/api/user/register', user)
+    axios({
+      method: 'post',
+      url: '/api/user/register',
+      headers: 'Content-Type: application/json',
+      data: user
+    })
             //.then(res => history.push('/'))
             .then(res => createSuccessRegisterPost(res.data) )
             .catch(err => createFailedRegisterPost(err));
