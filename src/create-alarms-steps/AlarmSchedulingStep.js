@@ -1,7 +1,7 @@
 
-import { Map, List, Set, fromJS } from 'immutable';
+import { Map, Set } from 'immutable';
 import React, { Component } from 'react';
-import { Button, Form, Row, Col, Container, DropdownButton, Dropdown, ButtonGroup, Card, ListGroup } from 'react-bootstrap';
+import { Button, Col, DropdownButton, Dropdown, Card, ListGroup } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css'
 import moment from 'moment';
@@ -67,8 +67,7 @@ class AlarmSchedulingStep extends Component {
 
   	isValidated() {
   		console.log('AlarmSchedulingStep.isValidated() called')
-  		console.log('this.state.alarmTimes: ' + this.state.alarmTimes)
-	    let isDataValid = false;
+  		console.log('this.state.alarmTimes: ' + this.state.alarmTimes) 
 
 	    let count = 0;
 	    count += this.getAlarmCountPerDay('0');
@@ -84,7 +83,7 @@ class AlarmSchedulingStep extends Component {
 	    	return false;
 	    }
 
-	    if (this.props.getStore().alarmTimes != this.state.alarmTimes) { // only update store of something changed
+	    if (this.props.getStore().alarmTimes !== this.state.alarmTimes) { // only update store of something changed
 	      this.props.updateStore({
 	        ...this.getValidatorData()
 	      });
@@ -152,7 +151,7 @@ class AlarmSchedulingStep extends Component {
     }
 
     getAlarmTimesUiTable(dayAsNum, dayAsStr) {
-		if(this.state.alarmTimes.get(dayAsNum).count() != 0){
+		if(this.state.alarmTimes.get(dayAsNum).count() !== 0){
     		return (
     			<div className="row">
 					<Col xs={10} xsOffset={1} sm={8} smOffset={2} md={8} mdOffset={2}>

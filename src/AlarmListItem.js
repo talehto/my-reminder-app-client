@@ -1,15 +1,15 @@
 
 import React, { Component } from 'react';
-import * as ReactDOM from "react-dom";
-import { ListGroup, ListGroupItem, Button, Row, Col, Container } from 'react-bootstrap';
+
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css';
 
 
 class AlarmListItem extends Component {
-	constructor(props) {
-    	super(props);
-  	}
+	//constructor(props) {
+    //	super(props);
+  	//}
 
   	deleteClick = () => {
 		console.log("deleteClick pressed")

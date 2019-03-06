@@ -7,9 +7,9 @@ import Header from './Header'
 
 class StartMainPage extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+    //constructor(props) {
+    //    super(props);
+    //}
 
     render() {
       if (!this.props.userName) {

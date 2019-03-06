@@ -1,15 +1,11 @@
 
 import React, { Component } from 'react';
-import * as ReactDOM from "react-dom";
 import { Redirect } from 'react-router-dom'
-import { Card, ListGroup, ListGroupItem, Glyphicon, Button, Row, Col, Container } from 'react-bootstrap';
+import { Card, ListGroup, Button, Row, Col, Container } from 'react-bootstrap';
 import './App.css';
 import AlarmListItem from './AlarmListItem'
 import { connect } from 'react-redux'
 import * as loginActions from './actions/loginActions';
-import {List} from 'immutable';
-
-import AlarmTimeListItemOfNewAlarm from './create-alarms-steps/AlarmTimeListItemOfNewAlarm'
 
 class UserAlarms extends Component {
 	constructor(props) {
@@ -73,7 +69,7 @@ class UserAlarms extends Component {
 	getAlarmsOfOneDay(dayAsNum, dayAsStr){
 		console.log('UserAlarms.getAlarmsOfOneDay dayAsNum: ' + dayAsNum)
 		this.props.allAlarms.forEach(item => console.log('allAlarms: ' + item.alarmName))
-		var alarmsOfOneDay = this.props.allAlarms.filter( alarmItem => alarmItem.alarmTimes.get(dayAsNum).count() != 0 )
+		var alarmsOfOneDay = this.props.allAlarms.filter( alarmItem => alarmItem.alarmTimes.get(dayAsNum).count() !== 0 )
 		if(alarmsOfOneDay.count() === 0){
 			console.log('UserAlarms.getAlarmsOfOneDay alarmsOfOneDay is null')
 			return '';

@@ -10,10 +10,10 @@ import './index.css';
 import App from './App';
 import reducer from './reducers/reducer';
 import registerServiceWorker from './registerServiceWorker';
-import * as loginActions from './actions/loginActions';
+//import * as loginActions from './actions/loginActions';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faIgloo } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faIgloo)

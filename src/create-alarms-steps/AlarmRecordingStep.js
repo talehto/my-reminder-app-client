@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Button, Form, Row, Col, Container } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { ReactMic } from 'react-mic';
 import './../App.css';
 import mic from './../mic.svg';
@@ -64,7 +64,7 @@ class AlarmRecordingStep extends Component {
 	          		reject('Error'); // form contains errors
 	        	}
 
-	        	if (this.props.getStore().alarmRecord != this.getValidatorData().alarmRecord) { // only update store of something changed
+	        	if (this.props.getStore().alarmRecord !== this.getValidatorData().alarmRecord) { // only update store of something changed
 		          this.props.updateStore({
 		            ...this.getValidatorData()
 		            //savedToCloud: false // use this to notify step4 that some changes took place and prompt the user to save again

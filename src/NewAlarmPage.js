@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Map, List, Set, fromJS } from 'immutable';
-import { Button, Form, Row, Col, Container } from 'react-bootstrap';
+import { Map, Set } from 'immutable';
 import { connect } from 'react-redux'
 import './App.css';
 import Header from './Header'
@@ -13,8 +12,6 @@ import AlarmRecordingStep from './create-alarms-steps/AlarmRecordingStep'
 import AlarmSchedulingStep from './create-alarms-steps/AlarmSchedulingStep'
 import AlarmSavedStep from './create-alarms-steps/AlarmSavedStep'
 import uuid from 'uuid/v4'
-
-import { Redirect } from 'react-router-dom'
 
 class NewAlarmPage extends Component {
 

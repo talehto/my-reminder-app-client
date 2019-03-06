@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Navbar, Button, Form } from 'react-bootstrap';
-
+import { Container, Navbar, Form } from 'react-bootstrap';
 import Login from './Login'
-import RegisterUser from './RegisterUser'
 
 class Header extends Component {
     render() {

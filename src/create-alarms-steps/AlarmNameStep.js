@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Row, Col, Container, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import validation from 'react-validation-mixin';
 import strategy from 'joi-validation-strategy';
 import Joi from 'joi';
@@ -47,7 +47,7 @@ class AlarmNameStep extends Component {
 	          		reject('Error'); // form contains errors
 	        	}
 
-	        	if (this.props.getStore().alarmName != this.getValidatorData().alarmName) { // only update store of something changed
+	        	if (this.props.getStore().alarmName !== this.getValidatorData().alarmName) { // only update store of something changed
 		          this.props.updateStore({
 		            ...this.getValidatorData()
 		            //savedToCloud: false // use this to notify step4 that some changes took place and prompt the user to save again

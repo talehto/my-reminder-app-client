@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HelpBlock, Container, Button, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import './App.css';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
@@ -109,7 +109,7 @@ class RegisterUser extends Component {
               label="User name"
               type="text"
               placeholder="Enter user name"
-              errTxt={ this.state.errors['name'] }
+              errTxt={ name.message }
               name="name"
               required
               onChange={ this.handleInputChange }
@@ -146,7 +146,7 @@ class RegisterUser extends Component {
               errTxt={ password.message }
               name="password"
               required
-              minlength="8"
+              minLength="8"
               isInvalid={ !password.isValid }
               onChange={ this.handleInputChange }
               value={ password.value }
@@ -159,7 +159,7 @@ class RegisterUser extends Component {
               name="password_confirmation"
               required
               isInvalid={ !password_confirmation.isValid }
-              minlength="8"
+              minLength="8"
               onChange={ this.handleInputChange }
               value={ password_confirmation.value }
             />
