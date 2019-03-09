@@ -12,9 +12,7 @@ class Header extends Component {
               </Navbar.Brand>
               <Navbar.Toggle />
             <Navbar.Collapse>
-              <Form inline>
-                <Login />
-              </Form>
+            <Login />
             </Navbar.Collapse>
           </Container>
         </Navbar>

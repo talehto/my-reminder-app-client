@@ -55,8 +55,8 @@
   margin-top: 100px; 
 }
 
-.RegisterUser {
-  margin-top: 100px; 
+#RegisterUserForm {
+  margin-top: 50px; 
 }
 
 #NewAlarmName {

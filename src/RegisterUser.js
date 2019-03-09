@@ -21,6 +21,7 @@ class RegisterUser extends Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.generateRegistrationForm = this.generateRegistrationForm.bind(this);
     }
     
     handleInputChange(e) {
@@ -97,11 +98,17 @@ class RegisterUser extends Component {
         );
     }
 //
-    render() {
-      const { name, email, email_confirmation, password, password_confirmation, validated } = this.state;
+  render() {
+    var registrationForm = this.generateRegistrationForm();
+    return(<div>{registrationForm}</div>);
+      //
+  }
+
+  generateRegistrationForm(){
+    const { name, email, email_confirmation, password, password_confirmation, validated } = this.state;
       console.log('render() password_confirmation.isValid: ' + password_confirmation.isValid)
       return (
-        <div className="RegisterUser col-md-6 col-sm-8 col-xs-8">
+        <div id="RegisterUserForm" className="RegisterUser col-md-6 col-sm-8 col-xs-8">
           <Header />
           <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)}>
             <this.FieldGroup
@@ -222,8 +229,8 @@ class RegisterUser extends Component {
 }
 //
 RegisterUser.propTypes = {
-    setNewUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    setNewUser: PropTypes.func.isRequired
+    //auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

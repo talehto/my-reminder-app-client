@@ -17,6 +17,7 @@ export default function(state = initialState, action) {
   console.log(action)
   switch (action.type) {
   case 'REGISTRATION_SUCCEED':
+    state = state.set('state', 'REGISTRATION_SUCCEED'); 
     console.log("REDUCER REGISTRATION_SUCCEED")
     return state.set('user', action.user);
   case 'SET_USER_NAME':
