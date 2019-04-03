@@ -14,7 +14,7 @@ const initialState = fromJS(
 	});
 
 export default function(state = initialState, action) {
-  console.log(action)
+  //console.log(action)
   switch (action.type) {
   case 'REGISTRATION_SUCCEED':
     state = state.set('state', 'REGISTRATION_SUCCEED'); 
