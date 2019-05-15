@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 import * as loginActions from './actions/loginActions';
 import Header from './Header'
 
+import TestPage from './TestPage';
+
+//import axios from 'axios';
+//const apiUrl = 'http://localhost:5000';
+
 class RegisterUser extends Component {
 
     constructor() {
@@ -16,8 +21,7 @@ class RegisterUser extends Component {
             email_confirmation: {value: '', isValid: true, message: ''},
             password: {value: '', isValid: true, message: ''},
             password_confirmation: {value: '', isValid: true, message: ''},
-            validated: false,
-            errors: {}
+            validated: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,27 +68,28 @@ class RegisterUser extends Component {
             password: this.state.password.value,
             password_confirm: this.state.password_confirmation.value
           }
-          //this.props.setNewUser(user, this.props.history);
-          this.props.setNewUser(user);
+
+          this.props.setNewUser(user, this.props.history);
+          //this.props.setNewUser(user);
         }
     }
 
-    //componentWillReceiveProps(nextProps) {
-    //    if(nextProps.auth.isAuthenticated) {
-    //        this.props.history.push('/')
-    //    }
-    //    if(nextProps.errors) {
-    //        this.setState({
-    //            errors: nextProps.errors
-    //        });
-    //    }
-    //}
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.isAuthenticated) {
+            this.props.history.push('/')
+        }
+        if(nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
 
-    //componentDidMount() {
-    //    if(this.props.auth.isAuthenticated) {
-    //        this.props.history.push('/');
-    //    }
-    //}
+    componentDidMount() {
+        if(this.props.isAuthenticated) {
+            this.props.history.push('/');
+        }
+    }
 
     FieldGroup({ id, label,errTxt, ...props }) {
       return (
@@ -209,18 +214,12 @@ class RegisterUser extends Component {
       correct = false
     }
     if (password.value !== password_confirmation.value) {
-      console.log('checkEmailAndPasswordConfirmation() password_confirmation has incorrect value!!!!! password: ' + password + ', password_confirmation: ' + password_confirmation.value)
       password.isValid = false;
       password.message = 'Password confirmation is not equal with password'
       this.setState({password: password})
       password_confirmation.isValid = false;
       password_confirmation.message = 'Password confirmation is not equal with password'
       this.setState({password_confirmation: password_confirmation})
-      //this.password_confirmation_ref.current.setCustomValidity("Passwords Don't Match");
-      //form.setCustomValidity("Passwords Don't Match");
-      //this.setState({password_confirmation: password_confirmation})
-      //this.setState({password_confirmation: {...this.state.password_confirmation,['isValid']:false}});
-      //this.setState({errors: {...this.state.errors, ['password_confirmation']: 'Password confirmation is not equal with password'}});
       correct = false
     }
     return correct
@@ -230,17 +229,16 @@ class RegisterUser extends Component {
 //
 RegisterUser.propTypes = {
     setNewUser: PropTypes.func.isRequired
-    //auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    isAuthenticated: state.get('isAuthenticated'),
+    errors: state.get('errors')
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setNewUser: newUser => dispatch(loginActions.registerUser(newUser))
+    setNewUser: (newUser,history) => { dispatch(loginActions.registerUser(newUser,history)); }
   }
 };
 

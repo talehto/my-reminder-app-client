@@ -1,17 +1,43 @@
-
+import React, { Component } from 'react';
 import axios from 'axios';
 //import setAuthToken from '../setAuthToken';
 //import jwt_decode from 'jwt-decode';
 
-//export const registerUser2 = (user) => dispatch => {
-export const registerUser = (user) => {
-  return function (dispatch) {
-    console.log("loginActions.registerUser called");
-    axios.post('/api/user/register', user)
-      .then(res => createSuccessRegisterPost(res.data) )
-      .catch(err => createFailedRegisterPost(err));
-    }
-}
+const apiUrl = 'http://localhost:5000';
+
+export const setProgramState = (state) => {
+  console.log("setProgramState called. State: " + state)
+  return {
+    type: 'UPDATE_PROGRAM_STATE',
+    state: state
+  }
+};
+
+export const registerUser = (user,history) => {
+  return (dispatch) => {
+    return axios.post(`${apiUrl}/api/user/register`, user)
+      .then(response => {
+        console.log(response.data.email)
+        history.push('/')
+        dispatch(createSuccessRegisterPost(response.data))
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
+
+//Orig.
+//export const registerUser = (user) => dispatch => {
+////export const registerUser = (user) => {
+//  return function (dispatch) {
+//    console.log("loginActions.registerUser called");
+//    axios.post('/api/user/register', user)
+//    //.then(res => {console.log(res);} )
+//    .then(res => {console.log(res); /*dispatch(createSuccessRegisterPost(res.data))*/ } )
+//      .catch(err => {console.log(err); /*dispatch(createFailedRegisterPost(err))*/ } );
+//    }
+//};
 
 export const createSuccessRegisterPost =  (data) => {
   console.log("createSuccessRegisterPost called. Data: " + data.email)

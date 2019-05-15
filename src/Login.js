@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, ButtonGroup, Navbar } from 'react-bootstrap';
 import './App.css';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import * as loginActions from './actions/loginActions';
 
 class Login extends Component {
@@ -36,10 +37,15 @@ class Login extends Component {
 
   handleRegisterClick(){
     console.log("handleRegisterClick")
-
+    this.props.setProgramState('REGISTRATION_PAGE_OPENED')
   }
 
   render() {
+    if (this.props.programState === 'REGISTRATION_PAGE_OPENED') {
+      console.log('UserAlarms.render showCreateNewAlarmPage is TRUE')
+        return <Redirect to="/register" push={true} />
+        //
+      }
     console.log(this.props.userName)
     if (this.props.userName) {
       return (
@@ -89,13 +95,15 @@ class Login extends Component {
 //
 const mapStateToProps = (state, ownProps) => {
   return {
-    userName: state.get('userName')
+    userName: state.get('userName'),
+    programState: state.get('state')
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUserName: userName => dispatch(loginActions.setUserName(userName))
+    setUserName: userName => dispatch(loginActions.setUserName(userName)),
+    setProgramState: state => dispatch(loginActions.setProgramState(state))
   }
 };
 
