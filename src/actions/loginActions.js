@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import axios from 'axios';
 //import setAuthToken from '../setAuthToken';
 //import jwt_decode from 'jwt-decode';
@@ -13,31 +12,19 @@ export const setProgramState = (state) => {
   }
 };
 
-export const registerUser = (user,history) => {
-  return (dispatch) => {
-    return axios.post(`${apiUrl}/api/user/register`, user)
-      .then(response => {
-        console.log(response.data.email)
-        history.push('/')
-        dispatch(createSuccessRegisterPost(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
-  };
+export const registerUser = (user,history) => dispatch => {  
+  axios.post(`${apiUrl}/api/user/register`, user)
+    .then(response => {
+      console.log("SUCCESS!!!!!")
+      console.log(response.data.email)
+      dispatch(createSuccessRegisterPost(response.data))
+      history.push('/')
+    })
+    .catch(error => {
+      console.log("ERROR!!!!!!!!!!!!")
+      dispatch(createFailedRegisterPost(error.response.data))
+    });
 };
-
-//Orig.
-//export const registerUser = (user) => dispatch => {
-////export const registerUser = (user) => {
-//  return function (dispatch) {
-//    console.log("loginActions.registerUser called");
-//    axios.post('/api/user/register', user)
-//    //.then(res => {console.log(res);} )
-//    .then(res => {console.log(res); /*dispatch(createSuccessRegisterPost(res.data))*/ } )
-//      .catch(err => {console.log(err); /*dispatch(createFailedRegisterPost(err))*/ } );
-//    }
-//};
 
 export const createSuccessRegisterPost =  (data) => {
   console.log("createSuccessRegisterPost called. Data: " + data.email)
@@ -47,11 +34,14 @@ export const createSuccessRegisterPost =  (data) => {
   }
 };
 
-export const createFailedRegisterPost =  (data) => {
-  console.log("createFailedRegisterPost called" + data)
+export const createFailedRegisterPost =  (error) => {
+  console.log("createFailedRegisterPost called: " + error)
+  //console.log(error.response.data);
+  //console.log(error.response.status);
+  //console.log(error.response.headers);
   return {
     type: 'REGISTRATION_FAILED',
-    payload: data
+    payload: error
   }
 };
 

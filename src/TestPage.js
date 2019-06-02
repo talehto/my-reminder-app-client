@@ -41,6 +41,7 @@ class TestPage extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
+          <p>{ return_value.name }</p>
           </div>
         </div>
       </div>

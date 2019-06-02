@@ -11,7 +11,7 @@ const initialState = fromJS(
 		allAlarms: List(),
     dummyFlag: false,
     state: 'INITIAL',
-    errors: {}
+    errors: ''
 	});
 
 export default function(state = initialState, action) {
@@ -23,9 +23,13 @@ export default function(state = initialState, action) {
     console.log("REDUCER REGISTRATION_SUCCEED")
     state = state.set('state', 'REGISTRATION_SUCCEED'); 
     return state.set('user', action.user);
+    var newState = fromJS(state)
+    newState = newState.set('state', 'REGISTRATION_SUCCEED'); 
+    return newState.set('user', action.user);
   case 'REGISTRATION_FAILED':
     console.log("REDUCER REGISTRATION_FAILED")
-    return state.set('state', action.state);
+    state = state.set('errors', action.payload);
+    return state.set('state', 'REGISTRATION_FAILED');
   case 'SET_USER_NAME':
     console.log("REDUCER Setting name:")
     return state.set('userName', action.userName);

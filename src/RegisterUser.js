@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import './App.css';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import * as loginActions from './actions/loginActions';
 import Header from './Header'
-
-import TestPage from './TestPage';
-
-//import axios from 'axios';
-//const apiUrl = 'http://localhost:5000';
 
 class RegisterUser extends Component {
 
@@ -45,16 +41,16 @@ class RegisterUser extends Component {
         const form = e.currentTarget;
 
         this.resetValidationStates();
+        e.preventDefault();
+
         let validityStatus = form.checkValidity()
         if (validityStatus === false) {
-          e.preventDefault();
           e.stopPropagation();
         }
 
         if (false === this.checkEmailAndPasswordConfirmation()){
           console.log("checkEmailAndPasswordConfirmation returned false")
           console.log('handleSubmit() this.state.password_confirmation.isValid: ' + this.state.password_confirmation.isValid)
-          e.preventDefault();
           e.stopPropagation();
           validityStatus = false
         }
@@ -70,7 +66,6 @@ class RegisterUser extends Component {
           }
 
           this.props.setNewUser(user, this.props.history);
-          //this.props.setNewUser(user);
         }
     }
 
@@ -104,9 +99,33 @@ class RegisterUser extends Component {
     }
 //
   render() {
+    console.log("this.props.programState: " + this.props.programState)
+    var errorDialog = this.generateErrorDialog();
+    if(this.props.programState === 'REGISTRATION_FAILED'){
+      return(<div>{errorDialog}</div>);
+    }
     var registrationForm = this.generateRegistrationForm();
     return(<div>{registrationForm}</div>);
-      //
+    //
+  }
+
+  generateErrorDialog(){
+    const handleDismiss = () => {this.props.setProgramState('REGISTRATION_PAGE_OPENED')}
+    return (
+      <Alert variant="danger" onClose={handleDismiss} dismissible>
+          <Alert.Heading>Registration failed...</Alert.Heading>
+          <p>
+            Error message: 
+          </p>
+          <p>
+            { this.props.errors }
+          </p>
+          <p>
+            Please re-fill a registration form
+          </p>
+        </Alert>
+        //
+    )
   }
 
   generateRegistrationForm(){
@@ -181,6 +200,19 @@ class RegisterUser extends Component {
     );
   }
 
+  initFormValues(){
+    const state = JSON.parse(JSON.stringify(this.state));
+    Object.keys(state).map(key => {
+      if (state[key].hasOwnProperty('isValid')) {
+        state[key].isValid = true;
+        state[key].message = '';
+        state[key].value = '';
+      }
+    });
+
+      this.setState(state);
+  }
+
   resetValidationStates(){
     // make a copy of everything in state
     const state = JSON.parse(JSON.stringify(this.state));
@@ -233,12 +265,14 @@ RegisterUser.propTypes = {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.get('isAuthenticated'),
-    errors: state.get('errors')
+    errors: state.get('errors'),
+    programState: state.get('state')
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNewUser: (newUser,history) => { dispatch(loginActions.registerUser(newUser,history)); }
+    setNewUser: (newUser,history) => { dispatch(loginActions.registerUser(newUser,history)) },
+    setProgramState: newState => { dispatch(loginActions.setProgramState(newState)) }
   }
 };
 
